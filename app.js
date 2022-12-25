@@ -2,8 +2,7 @@ const express=require('express');
 const mongoose=require('mongoose');
 const path=require('path');
 const Campground=require('./models/campground')
-console.log(connection);
-var connection = () =>  {return mongoose.connect('mongodb://localhost:27017/yelp-camp',{
+const connection = () =>  {return mongoose.connect('mongodb://localhost:27017/yelp-camp',{
     useNewUrlParser:true,
     maxPoolSize: 10,
     useUnifiedTopology:true
