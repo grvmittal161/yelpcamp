@@ -27,20 +27,27 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'))
 
 app.get('/',(req,res)=>{
-    res.send('hello from yelp camp')
+    res.render('home')
 })
-app.get('/makecampground',async (req,res)=>{
+// app.get('/makecampground',async (req,res)=>{
     
-    // const db=mongoose.connection;
-   const camp= new Campground({title:'backyard',description:'cheap camping'});
-    camp.save().then(() => {
-        res.send(camp)
-    }).catch((err) => {
-        res.send("Something went wrong")
-    });
+//     // const db=mongoose.connection;
+//    const camp= new Campground({title:'backyard',description:'cheap camping'});
+//     camp.save().then(() => {
+//         res.send(camp)
+//     }).catch((err) => {
+//         res.send("Something went wrong")
+//     });
    
+// })
+app.get('/campgrounds',(req,res)=>{
+const campgrounds=Campground.find({});
+res.render('campgrounds/index',{campgrounds})
 })
 
+app.get('/campgrounds/:id',(req,res)=>{
+    res.render('campgrounds/show')
+})
 
 app.listen(3000,()=>{
     console.log('on port 3000!!')
