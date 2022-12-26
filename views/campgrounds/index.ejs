@@ -10,10 +10,10 @@
     <h1>ALL CAMPGROUNDS </h1>
     <ul>
     
-    <% for(const campground of campgrounds )%>
+    <% for(var campground of campgrounds )%>
     <%{%>
-        <li><%= campground.title %></li>
+        <li><a href="/campgrounds/<%campground._id%>"></a><%=campground.title %></li>
         <% }%>
-    </ul>
+     </ul> 
 </body>
 </html>

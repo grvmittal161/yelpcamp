@@ -1,6 +1,7 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const path=require('path');
+const campground = require('./models/campground');
 const Campground=require('./models/campground')
 const connection = () =>  {return mongoose.connect('mongodb://localhost:27017/yelp-camp',{
     useNewUrlParser:true,
@@ -40,13 +41,15 @@ app.get('/',(req,res)=>{
 //     });
    
 // })
-app.get('/campgrounds',(req,res)=>{
-const campgrounds=Campground.find({});
+app.get('/campgrounds',async (req,res)=>{
+    connection();
+const campgrounds= await Campground.find({});
 res.render('campgrounds/index',{campgrounds})
 })
 
 app.get('/campgrounds/:id',(req,res)=>{
-    res.render('campgrounds/show')
+  const campground=  campground.findById(req.params.id)
+    res.render('campgrounds/show',{campground})
 })
 
 app.listen(3000,()=>{
