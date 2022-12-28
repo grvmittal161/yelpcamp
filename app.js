@@ -47,9 +47,10 @@ const campgrounds= await Campground.find({});
 res.render('campgrounds/index',{campgrounds})
 })
 
-app.get('/campgrounds/:id',(req,res)=>{
-  const campground=  campground.findById(req.params.id)
-    res.render('campgrounds/show',{campground})
+app.get('/campgrounds/:id', (req,res)=>{
+    connection();
+  const campground= Campground.findById(req.params.id)
+    res.render('campgrounds/show',{campground});
 })
 
 app.listen(3000,()=>{
