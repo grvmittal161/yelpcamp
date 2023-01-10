@@ -19,19 +19,17 @@ const connection = () =>  {return mongoose.connect('mongodb://localhost:27017/ye
 connection();
 
 const sample=(array)=>{
-    array[Math.floor(Math.random() * array.length)];
+    return array[Math.floor(Math.random() * array.length)];
 }
 const seedDB=async ()=>{
     campground.deleteMany({});
    for(let i=0;i<50;i++){
-    function x(){
     const random1000=Math.floor(Math.random()*1000);
     const camp=new Campground({
         location:`${cities[random1000].city},${cities[random1000].state}`,
 title:`${sample(descriptors)} ${sample(places)}`
-      })}
-      x();
-   await camp.save();
+      })
+        await camp.save();
    }
 }
-seedDB();
+module.exports={seedDB}

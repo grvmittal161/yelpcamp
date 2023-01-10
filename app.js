@@ -1,20 +1,13 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const path=require('path');
-const campground = require('./models/campground');
 const Campground=require('./models/campground')
 const connection = () =>  {return mongoose.connect('mongodb://localhost:27017/yelp-camp',{
     useNewUrlParser:true,
     maxPoolSize: 10,
     useUnifiedTopology:true
-}, (error, data) => {
-    if (error) {
-        console.error.bind(console,"connecto=ion error:")
-        return null
-    }
-    console.log('Database Connected');
-    return data;
-})};
+})}
+const sd = require("./seeds/index")
 // const db=mongoose.connection;
 // db.on("error",console.error.bind(console,"connecto=ion error:"));
 // db.once("open",()=>{
@@ -23,7 +16,7 @@ const connection = () =>  {return mongoose.connect('mongodb://localhost:27017/ye
 // mongoose.set('strictQuery',true)
 const app=express();
 
-connection();
+// connection();
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'))
 
@@ -42,13 +35,20 @@ app.get('/',(req,res)=>{
    
 // })
 app.get('/campgrounds',async (req,res)=>{
-    connection();
+    await connection();
 const campgrounds= await Campground.find({});
+// res.json(campgrounds)
 res.render('campgrounds/index',{campgrounds})
+})
+app.get('/save/campgrounds',async (req,res)=>{
+    sd.seedDB()
+//     await connection();
+// const campgrounds= await Campground.find({});
+// res.render('campgrounds/index',{campgrounds})
 })
 
 app.get('/campgrounds/:id',async (req,res)=>{
-    connection();
+  await   connection();
   const campground=await  Campground.findById(req.params.id)
     res.render('campgrounds/show',{campground});
 })

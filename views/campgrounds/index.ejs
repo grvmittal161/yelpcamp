@@ -10,9 +10,8 @@
     <h1>ALL CAMPGROUNDS </h1>
     <ul>
     
-    <% for(var campground of campgrounds )%>
-    <%{%>
-        <li><a href="/campgrounds/<%campground._id%>"></a><%=campground.title %></li>
+    <% for(var campground of campgrounds ) {%>
+        <li><a href="/campgrounds/<%=campground._id%>"><%=campground.title %></a></li>
         <% }%>
      </ul> 
 </body>
