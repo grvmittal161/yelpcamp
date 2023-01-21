@@ -6,9 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show </title>
 </head>
+<style>
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+background-color: rgb(230, 221, 221);
+margin-left: 10px;
+}
+h1,h2 {
+  text-transform: uppercase;
+  font-size:30pxpx;
+
+}
+button {
+  background-color: grey;
+  font-size: 20px;
+  border: 1px;
+  border-radius: 4px;
+}
+button:hover {
+  background-color: rgb(197, 194, 194);
+  cursor: pointer;
+}
+a,footer {
+  font-size: 20px;
+}
+
+</style>
 <body>
   <h1><%=campground.title%></h1>
   <h2><%= campground.location%></h2>
-  <footer><a href="/campgrounds">All Campgrounds</a></footer>
+ <p>
+   <a href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+  </p>
+  <p>
+ <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST" method="POST">
+  <button>DELETE</button>
+ </form>
+ 
+  </p>
+   <footer><a href="/campgrounds">All Campgrounds</a></footer>
 </body>
 </html>

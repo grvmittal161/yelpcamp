@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit campground </title>
+</head>
+<style>
+    body {
+        background-color: rgb(233, 229, 229);
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+       }
+       h1 {
+        text-transform: uppercase;
+        font-size: 50px;
+       }
+       form {
+        
+        margin-left: 10px;
+       }
+       .title-edit {
+          margin-bottom: 10px; 
+          font-size: 20px;
+          }
+          .location-edit {
+            margin-bottom: 10px; 
+          font-size: 20px;
+          }
+          button {
+            font-size: 20px;
+            border-radius: 4px;
+            padding: 4px 4px 4px 4px;
+            margin-bottom:10px ;
+            background-color: grey;
+          }
+          footer {
+            font-size: 20px;
+          }
+          button:hover {
+            background-color: lightgrey;
+          }
+</style>
+<body>
+    <h1>Edit campground</h1>
+    <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+        <div class="title-edit">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="campground[title]" value="<%=campground.title%>">
+        </div>
+        <div class="location-edit">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="campground[location]" value="<%=campground.location%>" >
+        </div>
+        <button>Add campground</button>
+    </form>
+    <footer><a href="/campgrounds">All Campgrounds</a></footer>
+</body>
+</html>
